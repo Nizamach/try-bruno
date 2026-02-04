@@ -1,0 +1,26 @@
+meta {
+  name: Get One User
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://jsonplaceholder.typicode.com/users/10
+  body: none
+  auth: inherit
+}
+
+tests {
+  test("Harus sukses (200)", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("Namanya harus Chelsey Dietrich", function() {
+    expect(res.getBody().name).to.equal("Clementina DuBuque");
+  });
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
