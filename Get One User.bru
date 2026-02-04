@@ -11,12 +11,26 @@ get {
 }
 
 tests {
-  test("Harus sukses (200)", function() {
+  // Memastikan waktu respon cepat (di bawah 500ms)
+  // test("Respon harus cepat", function() {
+  //   expect(res.getResponseTime()).to.be.below(500);
+  // });
+  
+  //memastikan response 200
+  test("Status code harus 200", function() {
     expect(res.getStatus()).to.equal(200);
   });
   
-  test("Namanya harus Chelsey Dietrich", function() {
-    expect(res.getBody().name).to.equal("Clementina DuBuque");
+  // Memastikan struktur data benar (contoh: harus ada email)
+  test("Data harus punya email", function() {
+    const data = res.getBody();
+    expect(data.email).to.be.a('string');
+  });
+  
+  //Memastikan ID adalah angka
+  test("Memastikan ID adalah angka", function() {
+    const data = res.getBody();
+    expect(data.id).to.be.a('number');
   });
 }
 

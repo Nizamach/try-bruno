@@ -1,0 +1,32 @@
+meta {
+  name: Negative Case
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://jsonplaceholder.typicode.com/posts
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "SEMBARANG": Null
+  }
+}
+
+tests {
+  test("Negative: Status code harus 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+  
+  test("Positive: Status code harus 500", function() {
+    expect(res.getStatus()).to.equal(500);
+  });
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
